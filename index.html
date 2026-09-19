@@ -3,591 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>كابتن أحمد العلاوي | جلسات مساج منزلية فاخرة للرجال</title>
+  <title>كابتن أحمد العلاوي - حجز جلسات مساج</title>
   
-  <!-- خطوط عربية حديثة وفخمة -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- مكتبة EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   
-  <!-- FontAwesome للأيقونات -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- مكتبة AOS للمؤثرات والحركة عند التمرير -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-
   <style>
-    /* ==========================================
-       الأنماط الأساسية والألوان الفاخرة
-    ========================================== */
-    :root {
-      --bg-primary: #0a0a0c;
-      --bg-secondary: #121216;
-      --bg-card: #1a1a20;
-      --gold-primary: #d4af37;
-      --gold-light: #f3e5ab;
-      --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #aa7c11 100%);
-      --text-white: #ffffff;
-      --text-muted: #a0a0ab;
-      --border-gold: rgba(212, 175, 55, 0.3);
-      --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.15);
-      --font-main: 'Cairo', sans-serif;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      background-color: var(--bg-primary);
-      color: var(--text-white);
-      font-family: var(--font-main);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ==========================================
-       التنقل العائم (Floating Bottom Nav)
-    ========================================== */
-    .floating-nav {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 400px;
-      background: rgba(18, 18, 22, 0.85);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid var(--border-gold);
-      border-radius: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
       display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 10px 15px;
-      z-index: 1000;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
-    }
-
-    .nav-btn {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .nav-btn.active, .nav-btn:active {
-      color: var(--bg-primary);
-      background: var(--gold-gradient);
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
-    }
-
-    /* ==========================================
-       قسم Hero
-    ========================================== */
-    .hero-section {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 60px 20px 100px 20px;
-      background: radial-gradient(circle at center, #1a1a24 0%, #0a0a0c 100%);
-      text-align: center;
-      overflow: hidden;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
     }
-
-    .hero-bg-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('watermarked_img_2687153507297645793.png') center/cover no-repeat;
-      opacity: 0.18;
-      filter: blur(8px) contrast(1.2);
-      transform: scale(1.1);
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 600px;
-      width: 100%;
-    }
-
-    .hero-title {
-      font-size: 2.8rem;
-      font-weight: 900;
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
-      letter-spacing: -0.5px;
-    }
-
-    .hero-subtitle {
-      font-size: 1.3rem;
-      color: var(--text-white);
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-
-    .hero-desc {
-      font-size: 1rem;
-      color: var(--text-muted);
-      margin-bottom: 30px;
-      padding: 0 10px;
-    }
-
-    .btn-gold {
-      display: inline-block;
-      background: var(--gold-gradient);
-      color: var(--bg-primary);
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 16px 36px;
-      border-radius: 50px;
-      text-decoration: none;
-      border: none;
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-    }
-
-    .btn-gold:active {
-      transform: scale(0.96);
-      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
-    }
-
-    /* ==========================================
-       قسم من أنا
-    ========================================== */
-    .section-padding {
-      padding: 80px 20px;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--gold-primary);
-      margin-bottom: 40px;
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 50px;
-      height: 3px;
-      background: var(--gold-gradient);
-      margin: 8px auto 0;
-      border-radius: 2px;
-    }
-
-    .about-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-gold);
-      border-radius: 20px;
-      padding: 30px 20px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .about-img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--gold-primary);
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-    }
-
-    .about-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .about-badge {
-      display: inline-block;
-      background: rgba(212, 175, 55, 0.1);
-      color: var(--gold-light);
-      font-size: 0.85rem;
-      padding: 4px 12px;
+    .booking-card {
+      background-color: #1e1e1e;
+      border: 1px solid #d4af37; /* لون ذهبي */
       border-radius: 12px;
-      margin: 4px;
-      border: 1px solid rgba(212, 175, 55, 0.2);
-    }
-
-    .about-desc {
-      color: var(--text-muted);
-      margin-top: 15px;
-      font-size: 0.95rem;
-    }
-
-    /* ==========================================
-       قسم الخدمات
-    ========================================== */
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-
-    .service-card {
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 16px;
-      padding: 25px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card:active {
-      transform: translateY(-4px);
-      border-color: var(--gold-primary);
-    }
-
-    .service-icon {
-      font-size: 2rem;
-      color: var(--gold-primary);
-      margin-bottom: 15px;
-    }
-
-    .service-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .service-desc {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    /* ==========================================
-       قسم الفرق بين الخدمات
-    ========================================== */
-    .help-box {
-      background: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, rgba(18,18,22,1) 100%);
-      border: 1px dashed var(--gold-primary);
-      border-radius: 16px;
-      padding: 25px;
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .help-title {
-      font-size: 1.2rem;
-      color: var(--gold-light);
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    /* ==========================================
-       قسم لماذا هذه الجلسة؟
-    ========================================== */
-    .why-section {
-      background: var(--bg-secondary);
-      border-radius: 20px;
-      padding: 30px 20px;
-      margin: 40px 0;
-    }
-
-    .why-list {
-      list-style: none;
-      margin-top: 20px;
-    }
-
-    .why-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 15px;
-      font-size: 0.95rem;
-    }
-
-    .why-item i {
-      color: var(--gold-primary);
-      font-size: 1.1rem;
-    }
-
-    /* ==========================================
-       قسم الحجز
-    ========================================== */
-    .booking-form {
-      background: var(--bg-card);
-      border: 1px solid var(--border-gold);
-      border-radius: 20px;
-      padding: 25px 20px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text-white);
-    }
-
-    .form-input, .form-select, .form-textarea {
+      padding: 30px;
       width: 100%;
-      background: var(--bg-primary);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 14px;
-      color: var(--text-white);
-      font-family: var(--font-main);
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.3s;
+      max-width: 450px;
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
     }
-
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      border-color: var(--gold-primary);
-    }
-
-    .notes-box {
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 10px;
-      padding: 15px;
-      margin: 20px 0;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .notes-box p {
-      margin-bottom: 6px;
-    }
-
-    .notes-box p:last-child {
-      margin-bottom: 0;
-    }
-
-    .price-highlight {
-      color: var(--gold-light);
-      font-weight: 700;
-    }
-
-    /* ==========================================
-       الـ Footer
-    ========================================== */
-    .footer {
+    h2 {
+      color: #d4af37;
       text-align: center;
-      padding: 40px 20px 100px 20px;
-      background: var(--bg-primary);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      color: var(--text-muted);
-      font-size: 0.85rem;
+      margin-bottom: 24px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #c0c0c0;
+      font-size: 14px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background-color: #2a2a2a;
+      color: #fff;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #d4af37;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #d4af37;
+      color: #121212;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #f3cf55;
+    }
+    #status-message {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
-  <!-- التنقل العائم -->
-  <nav class="floating-nav">
-    <a href="#about" class="nav-btn"><i class="fa-solid fa-user"></i> من أنا</a>
-    <a href="#services" class="nav-btn"><i class="fa-solid fa-spa"></i> الخدمات</a>
-    <a href="#booking" class="nav-btn active"><i class="fa-solid fa-calendar-check"></i> الحجز</a>
-  </nav>
-
-  <!-- قسم الـ HERO -->
-  <section class="hero-section">
-    <div class="hero-bg-overlay"></div>
-    <div class="hero-content" data-aos="fade-up">
-      <h1 class="hero-title">راحتك في بيتك</h1>
-      <h2 class="hero-subtitle">جلسات مساج منزلية برايفت للرجال</h2>
-      <p class="hero-desc">جلسة مصممة حسب احتياج جسمك، مع اختيار نوع المساج والضغط المناسب لك.</p>
-      <a href="#booking" class="btn-gold">احجز جلستك</a>
-    </div>
-  </section>
-
-  <div class="container" style="max-width: 600px; margin: 0 auto;">
-
-    <!-- قسم من أنا -->
-    <section id="about" class="section-padding">
-      <h2 class="section-title" data-aos="fade-up">من أنا</h2>
-      <div class="about-card" data-aos="fade-up" data-aos-delay="100">
-        <!-- الصورة الواضحة والمعزولة -->
-        <img src="watermarked_img_2687153507297645793.png" alt="كابتن أحمد العلاوي" class="about-img">
-        <h3 class="about-name">كابتن أحمد العلاوي</h3>
-        <div>
-          <span class="about-badge">خريج تربية رياضية</span>
-          <span class="about-badge">مدرب معتمد من نقابة المهن الرياضية</span>
-        </div>
-        <p class="about-desc">
-          أقدم جلسات مساج منزلية برايفت، ويتم اختيار أسلوب الجلسة والضغط المناسب حسب احتياج كل شخص.
-        </p>
-      </div>
-    </section>
-
-    <!-- قسم الخدمات -->
-    <section id="services" class="section-padding">
-      <h2 class="section-title" data-aos="fade-up">الخدمات</h2>
-      
-      <div class="services-grid">
-        <div class="service-card" data-aos="fade-right">
-          <i class="fa-solid fa-feather-pointed service-icon"></i>
-          <h3 class="service-title">مساج استرخائي</h3>
-          <p class="service-desc">للراحة وتقليل التوتر والإجهاد.</p>
-        </div>
-
-        <div class="service-card" data-aos="fade-left">
-          <i class="fa-solid fa-hands-holding-circle service-icon"></i>
-          <h3 class="service-title">مساج سويدي</h3>
-          <p class="service-desc">ضغط خفيف إلى متوسط، مناسب للاسترخاء وتنشيط الجسم.</p>
-        </div>
-
-        <div class="service-card" data-aos="fade-right">
-          <i class="fa-solid fa-hand-holding-medical service-icon"></i>
-          <h3 class="service-title">مساج علاجي</h3>
-          <p class="service-desc">مناسب للشد والإجهاد العضلي واختيار الضغط المناسب حسب احتياجك.</p>
-        </div>
-
-        <div class="service-card" data-aos="fade-left">
-          <i class="fa-solid fa-child-reaching service-icon"></i>
-          <h3 class="service-title">Deep Tissue</h3>
-          <p class="service-desc">مساج أعمق لمن يفضل الضغط القوي والعمل على مناطق الشد.</p>
-        </div>
-
-        <div class="service-card" data-aos="fade-right">
-          <i class="fa-solid fa-bolt service-icon"></i>
-          <h3 class="service-title">مساج تايلاندي</h3>
-          <p class="service-desc">يعتمد على الضغط والتمدد والحركة للمساعدة على تقليل التيبس.</p>
-        </div>
-
-        <div class="service-card" data-aos="fade-left">
-          <i class="fa-solid fa-circle-dot service-icon"></i>
-          <h3 class="service-title">الحجامة</h3>
-          <p class="service-desc">حجامة جافة، منزلقة، إلكترونية وتشريطية حسب المناسب للجلسة.</p>
-        </div>
+  <div class="booking-card">
+    <h2>حجز جلسة مساج</h2>
+    
+    <form id="booking-form">
+      <div class="form-group">
+        <label for="user_name">الاسم بالكامل:</label>
+        <input type="text" id="user_name" name="user_name" required placeholder="أدخل اسمك الكريم">
       </div>
 
-      <!-- شرح الفرق بين الخدمات -->
-      <div class="help-box" data-aos="zoom-in">
-        <h3 class="help-title">مش عارف تختار؟</h3>
-        <p class="service-desc">اكتب احتياجك في الملاحظات، وسيتم اختيار الأنسب لك بعد التقييم قبل الجلسة.</p>
+      <div class="form-group">
+        <label for="user_phone">رقم الهاتف / الواتساب:</label>
+        <input type="tel" id="user_phone" name="user_phone" required placeholder="01xxxxxxxx">
       </div>
 
-      <!-- لماذا هذه الجلسة؟ -->
-      <div class="why-section" data-aos="fade-up">
-        <h3 style="color: var(--gold-light); text-align: center; font-size: 1.1rem;">مش كل جسم محتاج نفس المساج</h3>
-        <ul class="why-list">
-          <li class="why-item"><i class="fa-solid fa-check-circle"></i> تقييم احتياجك قبل الجلسة</li>
-          <li class="why-item"><i class="fa-solid fa-check-circle"></i> اختيار الأسلوب المناسب</li>
-          <li class="why-item"><i class="fa-solid fa-check-circle"></i> تحديد الضغط المناسب</li>
-          <li class="why-item"><i class="fa-solid fa-check-circle"></i> جلسة منزلية بخصوصية وراحة</li>
-          <li class="why-item"><i class="fa-solid fa-check-circle"></i> مدة الجلسة من ساعة إلى ساعة ونصف</li>
-          <li class="why-item"><i class="fa-solid fa-location-dot"></i> الزيارات المنزلية متاحة داخل مصر</li>
-        </ul>
+      <div class="form-group">
+        <label for="user_location">المنطقة / العنوان:</label>
+        <input type="text" id="user_location" name="user_location" required placeholder="مثال: القاهرة، المعادي">
       </div>
-    </section>
 
-    <!-- قسم الحجز -->
-    <section id="booking" class="section-padding">
-      <h2 class="section-title" data-aos="fade-up">احجز جلستك</h2>
-      
-      <div class="booking-form" data-aos="fade-up">
-        <form id="whatsappForm">
-          <div class="form-group">
-            <label class="form-label">الاسم الكامل</label>
-            <input type="text" id="name" class="form-input" placeholder="أدخل اسمك" required>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">المنطقة / المحافظة</label>
-            <input type="text" id="location" class="form-input" placeholder="مثال: القاهرة / التجمع" required>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">نوع الجلسة</label>
-            <select id="service" class="form-select" required>
-              <option value="" disabled selected>اختر نوع الخدمة</option>
-              <option value="مساج استرخائي">مساج استرخائي</option>
-              <option value="مساج سويدي">مساج سويدي</option>
-              <option value="مساج علاجي">مساج علاجي</option>
-              <option value="Deep Tissue">Deep Tissue</option>
-              <option value="مساج تايلاندي">مساج تايلاندي</option>
-              <option value="الحجامة">الحجامة</option>
-              <option value="غير محدد (تقييم قبل الجلسة)">غير محدد (يحتاج تقييم)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">ملاحظات</label>
-            <textarea id="notes" class="form-textarea" rows="3" placeholder="اكتب أي ملاحظات أو مكان الشد العضلي..."></textarea>
-          </div>
-
-          <div class="notes-box">
-            <p><i class="fa-solid fa-tag"></i> سعر الجلسة: <span class="price-highlight">1200 جنيه.</span></p>
-            <p><i class="fa-solid fa-shield-halved"></i> الحجز يتم بعربون مسبق لتأكيد الموعد.</p>
-            <p><i class="fa-solid fa-car"></i> قد تُضاف تكلفة مواصلات حسب المكان والمسافة.</p>
-          </div>
-
-          <button type="submit" class="btn-gold" style="width: 100%;">إرسال طلب الحجز</button>
-        </form>
+      <div class="form-group">
+        <label for="service_type">نوع الجلسة المطلوبة:</label>
+        <select id="service_type" name="service_type" required>
+          <option value="" disabled selected>اختر نوع الجلسة</option>
+          <option value="مساج رياضي واستشفاء عضلات">مساج رياضي واستشفاء عضلات</option>
+          <option value="مساج استرخائي (Relaxation)">مساج استرخائي (Relaxation)</option>
+          <option value="جلسة مساج علاجي">جلسة مساج علاجي</option>
+        </select>
       </div>
-    </section>
 
+      <div class="form-group">
+        <label for="user_notes">ملاحظات إضافية:</label>
+        <textarea id="user_notes" name="user_notes" rows="3" placeholder="أي تفاصيل أو إصابات ترغب في توضيحها..."></textarea>
+      </div>
+
+      <button type="submit" id="submit-btn">إرسال طلب الحجز</button>
+      <div id="status-message"></div>
+    </form>
   </div>
 
-  <!-- الـ Footer -->
-  <footer class="footer">
-    <p style="font-weight: 700; color: var(--gold-light); margin-bottom: 4px;">كابتن أحمد العلاوي</p>
-    <p>جلسات مساج منزلية برايفت للرجال</p>
-  </footer>
-
-  <!-- مكتبة AOS للأنيميشن -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 800,
-      once: true
-    });
+    // 1. تهيئة مكتبة EmailJS باستخدام الـ Public Key الخاص بك
+    // تنبيه: استبدل YOUR_PUBLIC_KEY بمفتاحك الخاص من إعدادات EmailJS (Account -> API Keys)
+    (function() {
+      emailjs.init("YOUR_PUBLIC_KEY"); 
+    })();
 
-    // إرسال البيانات مباشرة إلى الواتساب الرقم المخصص
-    document.getElementById('whatsappForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const name = document.getElementById('name').value;
-      const location = document.getElementById('location').value;
-      const service = document.getElementById('service').value;
-      const notes = document.getElementById('notes').value || 'لا يوجد';
-      
-      const phone = "201145307937";
-      
-      const message = `السلام عليكم كابتن أحمد، أريد حجز جلسة مساج:%0A%0A` +
-                      `👤 *الاسم:* ${name}%0A` +
-                      `📍 *المنطقة/المحافظة:* ${location}%0A` +
-                      `💆‍♂️ *نوع الجلسة:* ${service}%0A` +
-                      `📝 *الملاحظات:* ${notes}`;
-      
-      alert("تم إرسال طلب الحجز بنجاح، وسيتم مراجعة البيانات والتواصل لتأكيد الموعد.");
-      window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+    // 2. الاستماع لحدث إرسال النموذج
+    document.getElementById('booking-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const btn = document.getElementById('submit-btn');
+      const statusMsg = document.getElementById('status-message');
+
+      btn.innerText = 'جاري الإرسال...';
+      btn.disabled = true;
+
+      // معرف الخدمة والقالب
+      const serviceID = 'YOUR_SERVICE_ID'; // استبدله بـ Service ID الخاص بك (مثل service_xxxx)
+      const templateID = 'template_v3ml94b';
+
+      // إرسال البيانات
+      emailjs.sendForm(serviceID, templateID, this)
+        .then(function() {
+          btn.innerText = 'تم الإرسال بنجاح!';
+          statusMsg.style.color = '#4CAF50';
+          statusMsg.innerText = 'تم استلام طلبك بنجاح، وسنتواصل معك في أقرب وقت.';
+          document.getElementById('booking-form').reset();
+          
+          setTimeout(() => {
+            btn.innerText = 'إرسال طلب الحجز';
+            btn.disabled = false;
+            statusMsg.innerText = '';
+          }, 5000);
+        }, function(error) {
+          btn.innerText = 'إرسال طلب الحجز';
+          btn.disabled = false;
+          statusMsg.style.color = '#f44336';
+          statusMsg.innerText = 'حدث خطأ أثناء الإرسال، يرجى المحاولة لاحقاً.';
+          console.error('EmailJS Error:', error);
+        });
     });
   </script>
+
 </body>
 </html>
