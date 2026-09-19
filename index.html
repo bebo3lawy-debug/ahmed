@@ -122,13 +122,12 @@
   </div>
 
   <script>
-    // 1. تهيئة مكتبة EmailJS باستخدام الـ Public Key الخاص بك
-    // تنبيه: استبدل YOUR_PUBLIC_KEY بمفتاحك الخاص من إعدادات EmailJS (Account -> API Keys)
+    // 1. تهيئة مكتبة EmailJS بالـ Public Key الخاص بك
     (function() {
-      emailjs.init("YOUR_PUBLIC_KEY"); 
+      emailjs.init("KcAV_V0r3-mDR5UjE"); 
     })();
 
-    // 2. الاستماع لحدث إرسال النموذج
+    // 2. معالجة إرسال النموذج
     document.getElementById('booking-form').addEventListener('submit', function(event) {
       event.preventDefault();
 
@@ -138,11 +137,10 @@
       btn.innerText = 'جاري الإرسال...';
       btn.disabled = true;
 
-      // معرف الخدمة والقالب
-      const serviceID = 'YOUR_SERVICE_ID'; // استبدله بـ Service ID الخاص بك (مثل service_xxxx)
+      // البيانات التي تم إعدادها
+      const serviceID = 'service_gzb3onh';
       const templateID = 'template_v3ml94b';
 
-      // إرسال البيانات
       emailjs.sendForm(serviceID, templateID, this)
         .then(function() {
           btn.innerText = 'تم الإرسال بنجاح!';
