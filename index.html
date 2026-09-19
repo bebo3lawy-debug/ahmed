@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>كابتن أحمد العلاوي - حجز جلسات مساج</title>
+  <title>حجز جلسة - الكابتن أحمد</title>
   
-  <!-- مكتبة EmailJS SDK -->
+  <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #e0e0e0;
+    }
+    body {
+      background-color: #f4f7f6;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,147 +23,217 @@
       padding: 20px;
     }
     .booking-card {
-      background-color: #1e1e1e;
-      border: 1px solid #d4af37; /* لون ذهبي */
-      border-radius: 12px;
+      background: #ffffff;
       padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       width: 100%;
-      max-width: 450px;
-      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+      max-width: 500px;
     }
-    h2 {
-      color: #d4af37;
+    .booking-card h2 {
       text-align: center;
-      margin-bottom: 24px;
+      color: #333;
+      margin-bottom: 20px;
     }
     .form-group {
-      margin-bottom: 16px;
+      margin-bottom: 15px;
     }
-    label {
+    .form-group label {
       display: block;
-      margin-bottom: 6px;
-      color: #c0c0c0;
+      margin-bottom: 5px;
+      color: #555;
+      font-weight: bold;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
       font-size: 14px;
     }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 6px;
-      border: 1px solid #444;
-      background-color: #2a2a2a;
-      color: #fff;
-      box-sizing: border-box;
-      font-size: 15px;
-    }
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: #d4af37;
-    }
-    button {
+    .btn-submit {
       width: 100%;
       padding: 12px;
-      background-color: #d4af37;
-      color: #121212;
+      background-color: #007bff;
       border: none;
-      border-radius: 6px;
+      color: white;
       font-size: 16px;
       font-weight: bold;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin-top: 10px;
+      transition: background-color 0.3s;
     }
-    button:hover {
-      background-color: #f3cf55;
+    .btn-submit:hover {
+      background-color: #0056b3;
+    }
+    .btn-submit:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
     }
     #status-message {
-      text-align: center;
       margin-top: 15px;
-      font-size: 14px;
+      text-align: center;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
   <div class="booking-card">
-    <h2>حجز جلسة مساج</h2>
+    <h2>استمارة حجز جلسة</h2>
     
     <form id="booking-form">
       <div class="form-group">
-        <label for="user_name">الاسم بالكامل:</label>
+        <label for="user_name">الاسم بالكامل *</label>
         <input type="text" id="user_name" name="user_name" required placeholder="أدخل اسمك الكريم">
       </div>
 
       <div class="form-group">
-        <label for="user_phone">رقم الهاتف / الواتساب:</label>
-        <input type="tel" id="user_phone" name="user_phone" required placeholder="01xxxxxxxx">
+        <label for="user_phone">رقم الهاتف (الواتساب) *</label>
+        <input type="tel" id="user_phone" name="user_phone" required placeholder="01xxxxxxxxx">
       </div>
 
       <div class="form-group">
-        <label for="user_location">المنطقة / العنوان:</label>
-        <input type="text" id="user_location" name="user_location" required placeholder="مثال: القاهرة، المعادي">
+        <label for="user_location">المنطقة / العنوان *</label>
+        <input type="text" id="user_location" name="user_location" required placeholder="مثال: المعادي - القاهرة">
       </div>
 
       <div class="form-group">
-        <label for="service_type">نوع الجلسة المطلوبة:</label>
-        <select id="service_type" name="service_type" required>
-          <option value="" disabled selected>اختر نوع الجلسة</option>
-          <option value="مساج رياضي واستشفاء عضلات">مساج رياضي واستشفاء عضلات</option>
-          <option value="مساج استرخائي (Relaxation)">مساج استرخائي (Relaxation)</option>
-          <option value="جلسة مساج علاجي">جلسة مساج علاجي</option>
+        <label for="service_type">نوع الخدمة المطلوب *</label>
+
+          <option value="جلسة مساج مساج منزلي">جلسة مساج منزلية</option>
+          <option value="تخفيف شد عضلي">تخفيف شد عضلي واستشفاء</option>
+          <option value="استرخاء عام">جلسة استرخاء وتوتر</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="user_notes">ملاحظات إضافية:</label>
-        <textarea id="user_notes" name="user_notes" rows="3" placeholder="أي تفاصيل أو إصابات ترغب في توضيحها..."></textarea>
+        <label for="session_date">التاريخ المفضل</label>
+        <input type="date" id="session_date" name="session_date">
       </div>
 
-      <button type="submit" id="submit-btn">إرسال طلب الحجز</button>
+      <div class="form-group">
+        <label for="session_time">الوقت المفضل</label>
+        <input type="time" id="session_time" name="session_time">
+      </div>
+
+      <div class="form-group">
+        <label for="user_notes">ملاحظات إضافية</label>
+        <textarea id="user_notes" name="user_notes" rows="3" placeholder="أي تفاصيل خاصة ترغب في إضافتها..."></textarea>
+      </div>
+
+      <button type="submit" id="submit-btn" class="btn-submit">إرسال الطلب</button>
       <div id="status-message"></div>
     </form>
   </div>
 
   <script>
-    // 1. تهيئة مكتبة EmailJS بالـ Public Key الخاص بك
+    // 1. تهيئة EmailJS
     (function() {
-      emailjs.init("KcAV_V0r3-mDR5UjE"); 
+      emailjs.init("KcAV_V0r3-mDR5UjE");
     })();
 
-    // 2. معالجة إرسال النموذج
     document.getElementById('booking-form').addEventListener('submit', function(event) {
       event.preventDefault();
 
       const btn = document.getElementById('submit-btn');
       const statusMsg = document.getElementById('status-message');
 
-      btn.innerText = 'جاري الإرسال...';
-      btn.disabled = true;
+      if (btn) {
+        btn.innerText = 'جاري الإرسال...';
+        btn.disabled = true;
+      }
 
-      // البيانات التي تم إعدادها
-      const serviceID = 'service_gzb3onh';
-      const templateID = 'template_v3ml94b';
+      const getVal = (id) => {
+        const el = document.getElementById(id) || document.querySelector(`[name="${id}"]`);
+        return (el && el.value.trim() !== '') ? el.value.trim() : '-';
+      };
 
-      emailjs.sendForm(serviceID, templateID, this)
+      let rawPhone = getVal('user_phone');
+      let formattedWhatsapp = rawPhone;
+
+      if (rawPhone !== '-') {
+        let cleanNumber = rawPhone.replace(/\D/g, '');
+        if (cleanNumber.startsWith('01') && cleanNumber.length === 11) {
+          cleanNumber = '2' + cleanNumber;
+        }
+        formattedWhatsapp = cleanNumber;
+      }
+
+      // 2. تجهيز بيانات الإيميل للمسؤول
+      const templateParams = {
+        user_name: getVal('user_name'),
+        user_location: getVal('user_location'),
+        user_phone: rawPhone,
+        user_whatsapp: formattedWhatsapp,
+        service_type: getVal('service_type'),
+        session_date: getVal('session_date'),
+        session_time: getVal('session_time'),
+        user_email: getVal('user_email'),
+        user_budget: getVal('user_budget'),
+        lead_source: getVal('lead_source'),
+        user_notes: getVal('user_notes')
+      };
+
+      // 3. إرسال الإيميل للإدمن عبر EmailJS
+      emailjs.send('service_gzb3onh', 'template_v3ml94b', templateParams)
         .then(function() {
-          btn.innerText = 'تم الإرسال بنجاح!';
-          statusMsg.style.color = '#4CAF50';
-          statusMsg.innerText = 'تم استلام طلبك بنجاح، وسنتواصل معك في أقرب وقت.';
+          
+          // 4. إرسال الـ SMS للعميل عبر SMS Misr
+          if (formattedWhatsapp !== '-') {
+            const smsText = "تم استلام طلب حجزكم بنجاح. يرجى الانتظار لحين تأكيد الجلسة معكم عبر الواتساب من قبل الكابتن. شكراً لتواصلكم معنا!";
+            
+            const smsPayload = {
+              environment: "1",
+              username: "D1b5becd-38f2-4396-9744-339d5b8a4cfd",
+              password: "1a08159bf22bb4abbfebbc19da9708b538c101299330e555e1de90e79b07a399",
+              sender: "CAP AHMED",
+              mobile: formattedWhatsapp,
+              message: smsText,
+              language: "2"
+            };
+
+            fetch('https://smsmisr.com/api/v2/sms/', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(smsPayload)
+            })
+            .then(res => res.json())
+            .then(data => console.log('استجابة SMS Misr:', data))
+            .catch(err => console.error('خطأ في إرسال SMS:', err));
+          }
+
+          // تحديث حالة الواجهة
+          if (btn) btn.innerText = 'تم الإرسال بنجاح!';
+          if (statusMsg) {
+            statusMsg.style.color = '#4CAF50';
+            statusMsg.innerText = 'تم استلام طلبك بنجاح!';
+          }
+          
           document.getElementById('booking-form').reset();
           
           setTimeout(() => {
-            btn.innerText = 'إرسال طلب الحجز';
-            btn.disabled = false;
-            statusMsg.innerText = '';
+            if (btn) {
+              btn.innerText = 'إرسال الطلب';
+              btn.disabled = false;
+            }
+            if (statusMsg) statusMsg.innerText = '';
           }, 5000);
+
         }, function(error) {
-          btn.innerText = 'إرسال طلب الحجز';
-          btn.disabled = false;
-          statusMsg.style.color = '#f44336';
-          statusMsg.innerText = 'حدث خطأ أثناء الإرسال، يرجى المحاولة لاحقاً.';
+          if (btn) {
+            btn.innerText = 'إرسال الطلب';
+            btn.disabled = false;
+          }
+          if (statusMsg) {
+            statusMsg.style.color = '#f44336';
+            statusMsg.innerText = 'حدث خطأ أثناء الإرسال، يرجى المحاولة لاحقاً.';
+          }
           console.error('EmailJS Error:', error);
         });
     });
   </script>
-
 </body>
 </html>
