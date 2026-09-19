@@ -100,8 +100,8 @@
 
       <div class="form-group">
         <label for="service_type">نوع الخدمة المطلوب *</label>
-
-          <option value="جلسة مساج مساج منزلي">جلسة مساج منزلية</option>
+        <select id="service_type" name="service_type" required>
+          <option value="جلسة مساج منزلية">جلسة مساج منزلية</option>
           <option value="تخفيف شد عضلي">تخفيف شد عضلي واستشفاء</option>
           <option value="استرخاء عام">جلسة استرخاء وتوتر</option>
         </select>
@@ -179,12 +179,12 @@
       emailjs.send('service_gzb3onh', 'template_v3ml94b', templateParams)
         .then(function() {
           
-          // 4. إرسال الـ SMS للعميل عبر SMS Misr
+          // 4. إرسال الـ SMS للعميل عبر SMS Misr (في البيئة التجريبية)
           if (formattedWhatsapp !== '-') {
             const smsText = "تم استلام طلب حجزكم بنجاح. يرجى الانتظار لحين تأكيد الجلسة معكم عبر الواتساب من قبل الكابتن. شكراً لتواصلكم معنا!";
             
             const smsPayload = {
-              environment: "1",
+              environment: "2", // تم التغيير إلى البيئة التجريبية "2"
               username: "D1b5becd-38f2-4396-9744-339d5b8a4cfd",
               password: "1a08159bf22bb4abbfebbc19da9708b538c101299330e555e1de90e79b07a399",
               sender: "CAP AHMED",
@@ -201,7 +201,9 @@
               body: JSON.stringify(smsPayload)
             })
             .then(res => res.json())
-            .then(data => console.log('استجابة SMS Misr:', data))
+            .then(data => {
+              console.log('استجابة SMS Misr:', data);
+            })
             .catch(err => console.error('خطأ في إرسال SMS:', err));
           }
 
